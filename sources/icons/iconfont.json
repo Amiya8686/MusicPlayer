@@ -1,0 +1,58 @@
+{
+  "id": "4995725",
+  "name": "音乐播放器",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1302",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "162781",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "2076193",
+      "name": "喜欢2",
+      "font_class": "xihuan",
+      "unicode": "e86f",
+      "unicode_decimal": 59503
+    },
+    {
+      "icon_id": "5387456",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "ead8",
+      "unicode_decimal": 60120
+    },
+    {
+      "icon_id": "5387484",
+      "name": "音量",
+      "font_class": "yinliang",
+      "unicode": "eae4",
+      "unicode_decimal": 60132
+    },
+    {
+      "icon_id": "5387492",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "eaea",
+      "unicode_decimal": 60138
+    },
+    {
+      "icon_id": "7594078",
+      "name": "24gl-repeatOnce",
+      "font_class": "24gl-repeatOnce",
+      "unicode": "ea75",
+      "unicode_decimal": 60021
+    }
+  ]
+}

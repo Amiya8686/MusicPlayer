@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Music Player</title>
+    <link rel="stylesheet" href="./sources/icons/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="./musicPlayer.css">
+</head>
+
+<body id="musicApp">
+    <!--切歌按钮-->
+    <button @click="handleSong" style="background-color:transparent;border:none;position:absolute;z-index:2">
+        <span class="iconfont icon-xihuan" style="font-size:20px;color:#451feeaa">点我</span>
+    </button>
+    <!--背景图片-->
+    <img :src="musicInfo.backgroundImageUrl" class="backgroundImage">
+    
+    <div  class="musicBox">
+        <!--图片-->
+        <div class="imageBox">
+            <img :src="musicInfo.imageUrl" alt="音乐图片">
+        </div>
+        <!--音乐信息-->
+        <div class="infoBox">
+            <p class="musicName">{{musicInfo.name}}</p>
+            <p class="singer">{{musicInfo.singer}}</p>
+        </div>
+        <!--音量盒-->
+        <div class="volumeBox"  v-show="musicStatus.isShowVolumeBox">
+            <button class="volumeDown" @click="volumeDown"><span class="iconfont icon-jian" style="font-size: 15px;"></span></button>
+            <input type="range" class="volumeBar" min="0" max="100" step="1" v-model="musicStatus.volume">
+            <button class="volumeUp" @click="volumeUp"><span class="iconfont icon-jia" style="font-size: 15px;"></span></button>
+        </div>
+        <!--按钮-->
+        <div class="btnBox">
+            <button class="repeat" @click="handleRepeat">
+                <span class="iconfont icon-24gl-repeatOnce" :style="{'font-size':'30px','color':musicStatus.isRepeat?'red':'black'}"></span>
+                </button>
+            <button class="love" @click="handleLove">
+                <span class="iconfont icon-xihuan icon" :style="{'font-size':'30px','color':musicStatus.isLove?'red':'black'}"></span>
+                </button>
+            <button class="volume" @click="handleVolumeBox">
+                <span class="iconfont icon-yinliang" :style="{'font-size':'30px','color':musicStatus.isShowVolumeBox?'red':'black'}"></span>
+            </button>
+        </div>
+        <!--进度条盒子-->
+        <div class="barBox" >
+            <span class="currentTime">{{secondToStr(musicStatus.currentTime)}}</span>
+            <input type="range" class="progressBar" v-model="musicStatus.currentTime" step="1" min="0" :max="musicStatus.duration"
+                @mouseup="handleProgressBar" @mousedown="musicStatus.isDragged=true;"
+                @touchend="handleProgressBar" @touchstart="musicStatus.isDragged=true">
+            <span class="duration">{{secondToStr(musicStatus.duration)}}</span>
+        </div>
+        <!--进度按钮盒子-->
+        <div class="btnBox" style="height:60px">
+            <button class="play" @click="handlePlay">
+                    <span class="iconfont icon-bofang" style="font-size:60px" v-show="musicStatus.isPaused"></span>
+                    <span class="iconfont icon-zanting" style="font-size:60px"v-show="!musicStatus.isPaused"></span>
+            </button>
+        </div>
+        <!--音乐-->
+        <audio :src="musicInfo.musicUrl" ref="music" :volume="musicStatus.volume*0.01" :loop="musicStatus.isRepeat" 
+             @loadeddata="handleDuration" @timeupdate="handleCurrentTime" @ended="handleEnd"></audio>
+    </div>
+</body>
+
+<script type="module">
+    import * as Vue from "./vue.esm-browser.js";
+    import {module as musicModule} from "./musicModule.js";
+    const musicApp = Vue.createApp(musicModule);
+    musicApp.mount("#musicApp");
+    
+    
+
+</script>
+
+
+
+
